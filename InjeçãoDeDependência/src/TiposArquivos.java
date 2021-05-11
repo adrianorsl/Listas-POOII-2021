@@ -1,6 +1,6 @@
 
 public enum TiposArquivos {
-	JSON("arquivos/Alunos.json", new Json());
+	JSON("arquivos/Alunos.json", new Json()), XML("arquivos/Alunos.xml", new XML());
 	
 	private String caminho;
 	private Persistencia persistencia;

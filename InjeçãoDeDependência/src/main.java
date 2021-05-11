@@ -8,7 +8,7 @@ public class main {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		final TiposArquivos tipo = TiposArquivos.JSON;
+		final TiposArquivos tipo = TiposArquivos.XML;
 		String caminho = tipo.getCaminho();
 		Persistencia p = tipo.getPersistencia();
 		
@@ -19,6 +19,7 @@ public class main {
 		
 		
 	    p.gravar(caminho, lista);
+	    
 		
 		
 	}
