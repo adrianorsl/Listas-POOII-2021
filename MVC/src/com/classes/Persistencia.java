@@ -3,7 +3,7 @@ package com.classes;
 
 public interface Persistencia {
 
-	public void gravar(String caminho, Aluno aluno) throws Exception;
+	public void gravar(Aluno aluno) throws Exception;
 	
-	public void ler(String caminho, Aluno aluno);
+	public void ler(Aluno aluno);
 }

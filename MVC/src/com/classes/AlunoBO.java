@@ -5,44 +5,44 @@ import java.util.List;
 
 public class AlunoBO implements Persistencia{
 
-	 public boolean inserir(String Tabela, Aluno aluno){
-	        if (existe(Tabela, aluno) != true) {
+	 public boolean inserir(Aluno aluno){
+	        if (existe(aluno) != true) {
 	            AlunoDAO alunosDAO = new AlunoDAO();
-	            return alunosDAO.inserir(Tabela, aluno);
+	            return alunosDAO.inserir(aluno);
 	        }
 	        return false;
 	    }
-	    public boolean alterar(String Tabela, Aluno aluno){
+	    public static boolean alterar(Aluno aluno){
 	        AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.alterar(Tabela, aluno);
+	        return alunosDAO.alterar(aluno);
 	    }
-	    public boolean excluir(String Tabela, Aluno aluno){
+	    public static boolean excluir(Aluno aluno){
 	    	AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.excluir(Tabela, aluno);
+	        return alunosDAO.excluir(aluno);
 	    }
-	    public Aluno procurarPorCpf(String Tabela, Aluno aluno){
+	    public static Aluno procurarPorCpf(Aluno aluno){
 	        AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.procurarPorCpf(Tabela, aluno);
+	        return alunosDAO.procurarPorCpf(aluno);
 	    }
-	    public Aluno procurarPorMatricula(String Tabela, Aluno aluno){
+	    public static Aluno procurarPorMatricula(Aluno aluno){
 	    	 AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.procurarPorMatricula(Tabela, aluno);
+	        return alunosDAO.procurarPorMatricula(aluno);
 	    }
-	    public boolean existe(String Tabela, Aluno aluno){
+	    public static boolean existe(Aluno aluno){
 	    	AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.existe(Tabela, aluno);
+	        return alunosDAO.existe(aluno);
 	    }
-	    public List<Aluno> pesquisarTodos(String Tabela, Aluno aluno){
+	    public static List<Aluno> pesquisarTodos(Aluno aluno){
 	        AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.pesquisarTodos(Tabela, aluno);
+	        return alunosDAO.pesquisarTodos(aluno);
 	    }
 		@Override
-		public void gravar(String caminho, Aluno aluno) throws Exception {
+		public void gravar(Aluno aluno) throws Exception {
 			// TODO Auto-generated method stub
 			
 		}
 		@Override
-		public void ler(String caminho, Aluno aluno) {
+		public void ler(Aluno aluno) {
 			// TODO Auto-generated method stub
 			
 		}

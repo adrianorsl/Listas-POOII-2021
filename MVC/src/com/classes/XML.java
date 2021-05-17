@@ -14,8 +14,11 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
 public class XML implements Persistencia{
+	
+	final static String NOMEDOARQUIVO = "alunos";
+	final static String LOCALHOST = "arquivos/";
 
-public void gravar(String caminho, Aluno aluno) throws IOException {
+public void gravar(Aluno aluno) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
@@ -48,8 +51,8 @@ public void gravar(String caminho, Aluno aluno) throws IOException {
 		
 		XMLOutputter xout = new XMLOutputter();
 		try {
-			System.out.println(caminho);
-			BufferedWriter arquivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(caminho),"UTF-8"));
+			System.out.println(NOMEDOARQUIVO );
+			BufferedWriter arquivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(LOCALHOST +  NOMEDOARQUIVO + ".xml"),"UTF-8"));
 			xout.output(documento, arquivo);
 			
 		}catch (IOException e) {
@@ -59,12 +62,11 @@ public void gravar(String caminho, Aluno aluno) throws IOException {
 	}
 
 	
-	public void ler(String caminho, Aluno aluno) {
+
+	@Override
+	public void ler(Aluno aluno) {
+		// TODO Auto-generated method stub
 		
-		
-		
-	
-			
-		}
+	}
 	}
 

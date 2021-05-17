@@ -8,11 +8,11 @@ import com.google.gson.GsonBuilder;
 
 public class Json implements Persistencia{
 
-	public void gravar(String caminho, Aluno aluno) throws Exception {
+	public void gravar(Aluno aluno) throws Exception {
 
 		GsonBuilder builder = new GsonBuilder();
 	    Gson gson = builder.create();
-	    FileWriter writer = new FileWriter(caminho);
+	    FileWriter writer = new FileWriter("arquivos/Alunos.json");
 	    writer.write(gson.toJson(aluno));
 	    writer.close();
 	    System.out.println(gson.toJson(aluno));
@@ -20,7 +20,7 @@ public class Json implements Persistencia{
 
 
 	@Override
-	public void ler(String caminho, Aluno aluno) {
+	public void ler(Aluno aluno) {
 		// TODO Auto-generated method stub
 		
 	}

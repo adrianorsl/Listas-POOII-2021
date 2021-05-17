@@ -6,18 +6,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import Enum.Tipos;
+
 public class AlunoDAO implements Persistencia {
 	
-	public void gravar(String caminho, Aluno aluno) {
-		String teste = caminho;
-		inserir(caminho, aluno);
+	final Tipos tipo = Tipos.BD;
+	final String NOMEDATABELA = "Aluno";
+	public void gravar(Aluno aluno) {
+		inserir(aluno);
 	}
-
 	
-    public boolean inserir(String TABELA, Aluno aluno) {
+	
+    public boolean inserir(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "INSERT INTO " + TABELA + " (nome, matricula, cpf, dataNascimento, email) VALUES (?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO " + NOMEDATABELA + " (nome, matricula, cpf, dataNascimento, email) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getNome());
             ps.setInt(2, aluno.getMatricula());
@@ -35,10 +38,10 @@ public class AlunoDAO implements Persistencia {
         }
     }
     
-    public boolean alterar(String TABELA, Aluno aluno) {
+    public boolean alterar(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + TABELA + " SET aluno = ? WHERE cpf = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getNome());
             ps.setString(2, aluno.getCpf());
@@ -52,10 +55,10 @@ public class AlunoDAO implements Persistencia {
             return false;
         }
     }
-    public boolean excluir(String TABELA, Aluno aluno) {
+    public boolean excluir(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "DELETE FROM " + TABELA + " WHERE cpf = ?;";
+            String sql = "DELETE FROM " + NOMEDATABELA + " WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getCpf());
             ps.executeUpdate();
@@ -68,10 +71,10 @@ public class AlunoDAO implements Persistencia {
             return false;
         }
     }
-    public Aluno procurarPorCpf(String TABELA, Aluno aluno) {
+    public Aluno procurarPorCpf(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + TABELA + " WHERE cpf = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getCpf());
             ResultSet rs = ps.executeQuery();
@@ -91,10 +94,10 @@ public class AlunoDAO implements Persistencia {
             return null;
         }
     }
-    public Aluno procurarPorMatricula(String TABELA, Aluno aluno) {
+    public Aluno procurarPorMatricula(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + TABELA + " WHERE matricula = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE matricula = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, aluno.getMatricula());
             ResultSet rs = ps.executeQuery();
@@ -114,10 +117,10 @@ public class AlunoDAO implements Persistencia {
             return null;
         }
     }
-    public boolean existe(String TABELA, Aluno aluno) {
+    public boolean existe(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + TABELA + " WHERE cpf = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getCpf());
             ResultSet rs = ps.executeQuery();
@@ -129,22 +132,22 @@ public class AlunoDAO implements Persistencia {
             }
         } catch (Exception e) {
             System.err.println("Erro: " + e.toString());
-            //e.printStackTrace();
+            e.printStackTrace();
             return false;
         }
         return false;
     }
-    public List<Aluno> pesquisarTodos(String TABELA, Aluno aluno) { 
+    public List<Aluno> pesquisarTodos(Aluno aluno) { 
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + TABELA + ";";
+            String sql = "SELECT * FROM " + NOMEDATABELA + ";";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             List<Aluno> listObj = montarLista(rs);
             return listObj;
         } catch (Exception e) {
             System.err.println("Erro: " + e.toString());
-            //e.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -165,7 +168,7 @@ public class AlunoDAO implements Persistencia {
 
 
 	@Override
-	public void ler(String caminho, Aluno aluno) {
+	public void ler(Aluno aluno) {
 		// TODO Auto-generated method stub
 		
 	}
