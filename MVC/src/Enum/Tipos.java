@@ -1,13 +1,13 @@
 package Enum;
 import com.classes.Persistencia;
 import com.classes.Json;
-import com.classes.XML;
+//import com.classes.XML;
 import com.classes.AlunoBO;
 
 public enum Tipos  {
 
 	JSON ("arquivos/Alunos.json", new Json()), 
-	XML ("arquivos/Alunos.xml", new XML()),
+	//XML ("arquivos/Alunos.xml", new XML()),
 	BD ("Aluno", new AlunoBO());
 	
 	private  String caminho;

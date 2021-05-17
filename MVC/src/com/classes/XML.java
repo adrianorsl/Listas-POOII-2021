@@ -13,18 +13,19 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
-public class XML {
+/*public class XML implements Persistencia{
 
-public void gravar(String caminho,List<Aluno> lista) throws IOException {
+public void gravar(String caminho, Aluno aluno) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
 		Document documento = new Document(config);
 		
-		for (int x = 0; x < lista.size(); x++){
+		
 			Element aluno = new Element("aluno");
 			
-			aluno.setAttribute("matricula", String.valueOf(lista.get(x).getMatricula()));
+			Element matricula= new Element("matricula");
+			matricula.setText(aluno.getAttributes());
 			
 			Element cpf = new Element("cpf");
 			cpf.setText(lista.get(x).getCpf());
@@ -88,4 +89,5 @@ public void gravar(String caminho,List<Aluno> lista) throws IOException {
 			
 		}
 	}
-}
+	
+}*/

@@ -3,7 +3,7 @@ package com.classes;
 import java.util.List;
 
 
-public class AlunoBO{
+public class AlunoBO implements Persistencia{
 
 	 public boolean inserir(String Tabela, Aluno aluno){
 	        if (existe(Tabela, aluno) != true) {
@@ -36,5 +36,15 @@ public class AlunoBO{
 	        AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.pesquisarTodos(Tabela, aluno);
 	    }
+		@Override
+		public void gravar(String caminho, Aluno aluno) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void ler(String caminho, Aluno aluno) {
+			// TODO Auto-generated method stub
+			
+		}
 	    
 }
