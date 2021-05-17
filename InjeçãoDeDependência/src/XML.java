@@ -2,15 +2,20 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
 public class XML implements Persistencia {
+	
+	final static String NOMEDOARQUIVO = "alunos";
+	final static String LOCALHOST = "arquivos/";
 
-	public void gravar(String caminho,List<Aluno> lista) throws IOException {
+	public void gravar(List<Aluno> lista) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
@@ -43,13 +48,50 @@ public class XML implements Persistencia {
 		
 		XMLOutputter xout = new XMLOutputter();
 		try {
-			System.out.println(caminho);
-			BufferedWriter arquivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(caminho),"UTF-8"));
+			System.out.println(NOMEDOARQUIVO);
+			BufferedWriter arquivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(LOCALHOST +  NOMEDOARQUIVO + ".xml"),"UTF-8"));
 			xout.output(documento, arquivo);
 			
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-				
+		
 	}
+
+	@Override
+	public void ler(List<Aluno> lista) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	/*public void ler(List<Aluno> lista) {
+		List<Aluno> listaAlu = new ArrayList<Aluno>();
+		Document doc = null;
+		SAXBuilder builder = new SAXBuilder();	
+		try { 
+			doc = builder.build(caminho);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}            
+		Element config = doc.getRootElement();
+		
+		
+		for (Iterator<Aluno> iter = lista.iterator(); iter.hasNext();) {
+			Element element = (Element) iter.next();
+			String n = element.getName();
+			Aluno alu = new Aluno(n);
+			alu.setMatricula(Integer.parseInt(element.getAttributeValue("matricula")));
+			alu.setNome(element.getChildText("nome"));
+			alu.setEmail(element.getChildText("email"));
+			alu.setCpf(element.getChildText("cpf"));
+			listaAlu.add(alu);
+			System.out.println(listaAlu);
+		}
+		for (Iterator<Aluno> iterator = listaAlu.iterator(); iterator.hasNext();) {
+			Aluno aluno = iterator.next();
+			
+			
+		}
+	}*/
 }

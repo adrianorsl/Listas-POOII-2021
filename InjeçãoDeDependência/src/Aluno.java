@@ -6,6 +6,10 @@ public class Aluno extends Pessoa {
 	private String dataNascimento;
 	private String email;
 	
+	public Aluno(String nome) {
+		super(nome);
+	}
+	
 	
 	public Aluno(String nome, int matricula, String cpf, String dataNascimento, String email) {
 		super(nome);
