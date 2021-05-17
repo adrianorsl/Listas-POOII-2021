@@ -13,7 +13,7 @@ import org.jdom.output.XMLOutputter;
 
 public class XML {
 
-public void gravar(String caminho,List<AlunoDTO> lista) throws IOException {
+public void gravar(String caminho,List<Aluno> lista) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
@@ -57,8 +57,8 @@ public void gravar(String caminho,List<AlunoDTO> lista) throws IOException {
 	}
 
 	
-	public void ler(String caminho, List<AlunoDTO> lista) {
-		List<AlunoDTO> listaAlu = new ArrayList<AlunoDTO>();
+	public void ler(String caminho, List<Aluno> lista) {
+		List<Aluno> listaAlu = new ArrayList<Aluno>();
 		Document doc = null;
 		SAXBuilder builder = new SAXBuilder();	
 		try { 
@@ -72,7 +72,7 @@ public void gravar(String caminho,List<AlunoDTO> lista) throws IOException {
 		for (Iterator iter = lista.iterator(); iter.hasNext();) {
 			Element element = (Element) iter.next();
 			String n = element.getName();
-			AlunoDTO alu = new AlunoDTO(n);
+			Aluno alu = new Aluno(n);
 			alu.setMatricula(Integer.parseInt(element.getAttributeValue("matricula")));
 			alu.setNome(element.getChildText("nome"));
 			alu.setEmail(element.getChildText("email"));
@@ -81,7 +81,7 @@ public void gravar(String caminho,List<AlunoDTO> lista) throws IOException {
 			System.out.println(listaAlu);
 		}
 		for (Iterator iterator = listaAlu.iterator(); iterator.hasNext();) {
-			AlunoDTO aluno = (AlunoDTO) iterator.next();
+			Aluno aluno = (Aluno) iterator.next();
 			
 			
 		}

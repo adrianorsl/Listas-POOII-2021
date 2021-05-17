@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 
 public class Json {
 
-	public void gravar(String caminho, List<AlunoDTO> lista) throws Exception {
+	public void gravar(String caminho, List<Aluno> lista) throws Exception {
 
 		GsonBuilder builder = new GsonBuilder();
 	    Gson gson = builder.create();
@@ -16,7 +16,7 @@ public class Json {
 	    System.out.println(gson.toJson(lista));
 	}
 
-	public void ler(String caminho, List<AlunoDTO> lista) {
+	public void ler(String caminho, List<Aluno> lista) {
 		
 	}
 }
