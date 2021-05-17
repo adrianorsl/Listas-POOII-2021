@@ -13,7 +13,7 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
-/*public class XML implements Persistencia{
+public class XML implements Persistencia{
 
 public void gravar(String caminho, Aluno aluno) throws IOException {
 		
@@ -22,30 +22,29 @@ public void gravar(String caminho, Aluno aluno) throws IOException {
 		Document documento = new Document(config);
 		
 		
-			Element aluno = new Element("aluno");
+			Element alunos = new Element("aluno");
 			
-			Element matricula= new Element("matricula");
-			matricula.setText(aluno.getAttributes());
+			alunos.setAttribute("matricula", String.valueOf(aluno.getMatricula()));
 			
 			Element cpf = new Element("cpf");
-			cpf.setText(lista.get(x).getCpf());
+			cpf.setText(aluno.getCpf());
 			
 			Element dataNascimento = new Element("DataNascimento");
-			dataNascimento.setText(lista.get(x).getDataNascimento());
+			dataNascimento.setText(aluno.getDataNascimento());
 			
 			Element email = new Element("email");
-			email.setText(lista.get(x).getEmail());
+			email.setText(aluno.getEmail());
 			
 			Element nome = new Element("nome");
-			nome.setText(lista.get(x).getNome());
+			nome.setText(aluno.getNome());
 			
 			
-			aluno.addContent(cpf);
-			aluno.addContent(dataNascimento);
-			aluno.addContent(email);
-			aluno.addContent(nome);
-			config.addContent(aluno);			
-		}
+			alunos.addContent(cpf);
+			alunos.addContent(dataNascimento);
+			alunos.addContent(email);
+			alunos.addContent(nome);
+			config.addContent(alunos);			
+		
 		
 		XMLOutputter xout = new XMLOutputter();
 		try {
@@ -60,34 +59,12 @@ public void gravar(String caminho, Aluno aluno) throws IOException {
 	}
 
 	
-	public void ler(String caminho, List<Aluno> lista) {
-		List<Aluno> listaAlu = new ArrayList<Aluno>();
-		Document doc = null;
-		SAXBuilder builder = new SAXBuilder();	
-		try { 
-			doc = builder.build(caminho);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}            
-		Element config = doc.getRootElement();
+	public void ler(String caminho, Aluno aluno) {
 		
 		
-		for (Iterator iter = lista.iterator(); iter.hasNext();) {
-			Element element = (Element) iter.next();
-			String n = element.getName();
-			Aluno alu = new Aluno(n);
-			alu.setMatricula(Integer.parseInt(element.getAttributeValue("matricula")));
-			alu.setNome(element.getChildText("nome"));
-			alu.setEmail(element.getChildText("email"));
-			alu.setCpf(element.getChildText("cpf"));
-			listaAlu.add(alu);
-			System.out.println(listaAlu);
-		}
-		for (Iterator iterator = listaAlu.iterator(); iterator.hasNext();) {
-			Aluno aluno = (Aluno) iterator.next();
-			
+		
+	
 			
 		}
 	}
-	
-}*/
+
