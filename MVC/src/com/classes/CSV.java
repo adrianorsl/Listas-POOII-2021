@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CSV implements Persistencia {
 	private final int POS_MATRICULA = 0;
@@ -14,23 +17,23 @@ public class CSV implements Persistencia {
 	private final int POS_CPF = 3;
 	private final int POS_DATA_NASCIMENTO = 4;
 
-	public void gravar(Aluno aluno)  throws IOException {
+	public void gravar(List<Aluno> lista)  throws IOException {
 		FileWriter writer = null;
 
 		try {
 			writer = new FileWriter("arquivos/aluno.csv");
 
-			
+			for (Aluno a : lista.size()) {
 				String[] info = new String[5];
 
-				info[POS_MATRICULA] = Integer.toString(aluno.getMatricula());
-				info[POS_NOME] = aluno.getNome();
-				info[POS_EMAIL] = aluno.getEmail();
-				info[POS_CPF] = aluno.getCpf();
-				info[POS_DATA_NASCIMENTO] = aluno.getDataNascimento();
+				info[POS_MATRICULA] = Integer.toString(a.getMatricula());
+				info[POS_NOME] = a.getNome();
+				info[POS_EMAIL] = a.getEmail();
+				info[POS_CPF] = a.getCpf();
+				info[POS_DATA_NASCIMENTO] = a.getDataNascimento();
 
 				writer.write(String.join(";", info) + "\n");
-			
+			}
 		} finally {
 			if (writer != null) {
 				writer.close();
@@ -41,60 +44,42 @@ public class CSV implements Persistencia {
 
 
 	@Override
-	public void ler(Aluno aluno) {
+	public List<Aluno> ler(List<Aluno> lista) throws IOException, ParseException {
 		BufferedReader reader = null;
 
 		try {
-			
+			List<Aluno> alunos = new ArrayList<>();
 
-			File arquivo = new File("arquivos/agenda.csv");
+			File arquivo = new File("arquivos/aluno.csv");
 
 			if (arquivo.exists()) {
-				try {
-					reader = new BufferedReader(new FileReader(arquivo));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				reader = new BufferedReader(new FileReader(arquivo));
 
 				String linha;
 
-				try {
-					while ((linha = reader.readLine()) != null) {
-						if (linha.isEmpty())
-							continue;
+				while ((linha = reader.readLine()) != null) {
+					if (linha.isEmpty())
+						continue;
 
-						String[] info = linha.split(";");
-						String nome = null, cpf = null, dataNascimento = null, email = null;
-						int matricula = 0;
-						Aluno a = new Aluno(nome, matricula, cpf, dataNascimento , email);
+					String[] info = linha.split(";");
 
-						a.setMatricula(Integer.parseInt(info[POS_MATRICULA]));
-						a.setNome(info[POS_NOME]);
-						a.setEmail(info[POS_EMAIL]);
-						a.setCpf(info[POS_CPF]);
-						a.setDataNascimento(info[POS_DATA_NASCIMENTO]);
+					String nome = "";
+					Aluno a = new Aluno(nome);
 
-						
-					}
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					a.setMatricula(Integer.parseInt(info[POS_MATRICULA]));
+					a.setNome(info[POS_NOME]);
+					a.setEmail(info[POS_EMAIL]);
+					a.setCpf(info[POS_CPF]);
+					a.setDataNascimento(info[POS_DATA_NASCIMENTO]);
+
+					alunos.add(a);
 				}
 			}
 
-			
+			return alunos;
 		} finally {
 			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				reader.close();
 				reader = null;
 			}
 		}

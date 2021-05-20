@@ -36,15 +36,16 @@ public class AlunoBO implements Persistencia{
 	        AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.pesquisarTodos(aluno);
 	    }
+		
 		@Override
-		public void gravar(Aluno aluno) throws Exception {
+		public void gravar(List<Aluno> lista) throws Exception {
 			// TODO Auto-generated method stub
 			
 		}
 		@Override
-		public void ler(Aluno aluno) {
+		public List<Aluno> ler(List<Aluno> lista) throws Exception {
 			// TODO Auto-generated method stub
-			
+			return null;
 		}
 	    
 }

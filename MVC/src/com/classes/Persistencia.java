@@ -1,9 +1,10 @@
 package com.classes;
 
+import java.util.List;
 
 public interface Persistencia {
 
-	public void gravar(Aluno aluno) throws Exception;
+	public void gravar(List<Aluno> lista) throws Exception;
 	
-	public void ler(Aluno aluno);
+	public List<Aluno> ler(List<Aluno> lista) throws Exception;
 }

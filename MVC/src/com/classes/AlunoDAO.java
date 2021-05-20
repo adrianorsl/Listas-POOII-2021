@@ -8,7 +8,7 @@ import java.util.List;
 
 import Enum.Tipos;
 
-public class AlunoDAO implements Persistencia {
+public class AlunoDAO  {
 	
 	final Tipos tipo = Tipos.BD;
 	final String NOMEDATABELA = "Aluno";
@@ -167,9 +167,5 @@ public class AlunoDAO implements Persistencia {
     }
 
 
-	@Override
-	public void ler(Aluno aluno) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

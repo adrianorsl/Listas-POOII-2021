@@ -18,28 +18,28 @@ public class XML implements Persistencia{
 	final static String NOMEDOARQUIVO = "alunos";
 	final static String LOCALHOST = "arquivos/";
 
-public void gravar(Aluno aluno) throws IOException {
+public void gravar(List<Aluno> lista) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
 		Document documento = new Document(config);
 		
-		
+		for (int x = 0; x < lista.size(); x++){
 			Element alunos = new Element("aluno");
 			
-			alunos.setAttribute("matricula", String.valueOf(aluno.getMatricula()));
+			alunos.setAttribute("matricula", String.valueOf(lista.get(x).getMatricula()));
 			
 			Element cpf = new Element("cpf");
-			cpf.setText(aluno.getCpf());
+			cpf.setText(lista.get(x).getCpf());
 			
 			Element dataNascimento = new Element("DataNascimento");
-			dataNascimento.setText(aluno.getDataNascimento());
+			dataNascimento.setText(lista.get(x).getDataNascimento());
 			
 			Element email = new Element("email");
-			email.setText(aluno.getEmail());
+			email.setText(lista.get(x).getEmail());
 			
 			Element nome = new Element("nome");
-			nome.setText(aluno.getNome());
+			nome.setText(lista.get(x).getNome());
 			
 			
 			alunos.addContent(cpf);
@@ -47,7 +47,7 @@ public void gravar(Aluno aluno) throws IOException {
 			alunos.addContent(email);
 			alunos.addContent(nome);
 			config.addContent(alunos);			
-		
+		}
 		
 		XMLOutputter xout = new XMLOutputter();
 		try {
@@ -63,10 +63,30 @@ public void gravar(Aluno aluno) throws IOException {
 
 	
 
-	@Override
-	public void ler(Aluno aluno) {
-		// TODO Auto-generated method stub
+	public List<Aluno> ler(List<Aluno> lista) {
+		List<Aluno> listaAlu = new ArrayList<Aluno>();
+		Document doc = null;
+		SAXBuilder builder = new SAXBuilder();	
+		try { 
+			doc = builder.build(LOCALHOST + NOMEDOARQUIVO + ".xml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}            
+		Element config = doc.getRootElement();
+		List lista1 = config.getChildren("aluno");
 		
-	}
-	}
+		for (Iterator iter = lista1.iterator(); iter.hasNext();) {
+			Element element = (Element) iter.next();
+			Aluno alu = new Aluno("");
+			alu.setMatricula(Integer.parseInt(element.getAttributeValue("matricula")));
+			alu.setNome(element.getChildText("nome"));
+			alu.setEmail(element.getChildText("email"));
+			alu.setCpf(element.getChildText("cpf"));
+			alu.setDataNascimento(element.getChildText("DataNascimento"));
+			listaAlu.add(alu);
+		}
+		return listaAlu;
+	}	
+}
+	
 
