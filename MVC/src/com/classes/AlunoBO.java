@@ -5,13 +5,16 @@ import java.util.List;
 
 public class AlunoBO implements Persistencia{
 
-	 public boolean inserir(Aluno aluno){
-	        if (existe(aluno) != true) {
-	            AlunoDAO alunosDAO = new AlunoDAO();
-	            return alunosDAO.inserir(aluno);
-	        }
-	        return false;
-	    }
+	@Override
+	public boolean gravar(List<Aluno> lista) throws Exception {
+		for (int x = 0; x < lista.size(); x++) {
+			if (existe(lista.get(x)) != true) {
+				AlunoDAO alunosDAO = new AlunoDAO();
+				return alunosDAO.inserir(lista.get(x));
+			}	
+		}
+		return false;
+	}
 	    public static boolean alterar(Aluno aluno){
 	        AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.alterar(aluno);
@@ -28,7 +31,7 @@ public class AlunoBO implements Persistencia{
 	    	 AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.procurarPorMatricula(aluno);
 	    }
-	    public static boolean existe(Aluno aluno){
+	    public boolean existe( Aluno aluno){
 	    	AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.existe(aluno);
 	    }
@@ -37,11 +40,7 @@ public class AlunoBO implements Persistencia{
 	        return alunosDAO.pesquisarTodos(aluno);
 	    }
 		
-		@Override
-		public void gravar(List<Aluno> lista) throws Exception {
-			// TODO Auto-generated method stub
-			
-		}
+		
 		@Override
 		public List<Aluno> ler(List<Aluno> lista) throws Exception {
 			// TODO Auto-generated method stub

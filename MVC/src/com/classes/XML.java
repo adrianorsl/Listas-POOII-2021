@@ -18,7 +18,7 @@ public class XML implements Persistencia{
 	final static String NOMEDOARQUIVO = "alunos";
 	final static String LOCALHOST = "arquivos/";
 
-public void gravar(List<Aluno> lista) throws IOException {
+	public boolean gravar(List<Aluno> lista) throws IOException {
 		
 		Element config = new Element("Alunos");
 		
@@ -49,7 +49,9 @@ public void gravar(List<Aluno> lista) throws IOException {
 			config.addContent(alunos);			
 		}
 		
+		
 		XMLOutputter xout = new XMLOutputter();
+		
 		try {
 			System.out.println(NOMEDOARQUIVO );
 			BufferedWriter arquivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(LOCALHOST +  NOMEDOARQUIVO + ".xml"),"UTF-8"));
@@ -58,7 +60,7 @@ public void gravar(List<Aluno> lista) throws IOException {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		return true;
 	}
 
 	

@@ -30,6 +30,7 @@ public class AlunoDAO  {
             ps.executeUpdate();
             ps.close();
             conn.close();
+            
             return true;
         } catch (Exception e) {
             System.err.println("Erro: " + e.toString());

@@ -16,7 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final Tipos tipo = Tipos.JSON;
+		final Tipos tipo = Tipos.BD;
 		Persistencia p = tipo.getPersistencia();
 		AlunoBO alunoBO = new AlunoBO();
 		ListAluno lista = new ListAluno();
@@ -31,13 +31,7 @@ public class Main {
 		lista.inserir(aluno);
 		
 		p.gravar(lista.getLista());
-		if (tipo == Tipos.BD) {
-			if(alunoBO.inserir(aluno)) {
-				System.out.println("Inserido com sucesso");
-			}else {
-				System.out.println("Erro ao Inserir");
-			}
-		}
+		
 		
 		List<Aluno> list = p.ler(lista.getLista());
 
@@ -46,6 +40,8 @@ public class Main {
 			System.out.println(element.toString() + "\n---");	
 		}
 		
+	    
+	    
 		aluno = new Aluno("Cristiano", 35255, "02030303030", "09/07/1986", "cristiano@homail.com");
 		
 		AlunoBO.alterar(aluno);
@@ -54,11 +50,6 @@ public class Main {
 		
 
 		aluno = new Aluno("Adriano", 35201, "01010101011", "15/10/1988", "adrianorslsc@hotmail.com");
-		if (AlunoBO.existe(aluno))
-			System.out.println("Aluno Encontrado");
-		else
-			System.out.println("Nao Encontrado");
-		
 		
 		
 		

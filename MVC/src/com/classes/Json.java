@@ -14,13 +14,14 @@ import com.google.gson.reflect.TypeToken;
 
 public class Json implements Persistencia{
 
-	public void gravar(List<Aluno> lista) throws Exception {
+	public boolean gravar(List<Aluno> lista) throws Exception {
 
 		GsonBuilder builder = new GsonBuilder();
 	    Gson gson = builder.create();
 	    FileWriter writer = new FileWriter("arquivos/Alunos.json");
 	    writer.write(gson.toJson(lista));
 	    writer.close();
+		return true;
 	    
 	}
 

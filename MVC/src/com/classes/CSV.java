@@ -17,7 +17,7 @@ public class CSV implements Persistencia {
 	private final int POS_CPF = 3;
 	private final int POS_DATA_NASCIMENTO = 4;
 
-	public void gravar(List<Aluno> lista)  throws IOException {
+	public boolean gravar(List<Aluno> lista)  throws IOException {
 		FileWriter writer = null;
 
 		try {
@@ -40,6 +40,7 @@ public class CSV implements Persistencia {
 				writer = null;
 			}
 		}
+		return true;
 	}
 
 
