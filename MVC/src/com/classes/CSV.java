@@ -85,4 +85,11 @@ public class CSV implements Persistencia {
 			}
 		}
 	}
+
+
+	@Override
+	public boolean alterar(List<Aluno> lista) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

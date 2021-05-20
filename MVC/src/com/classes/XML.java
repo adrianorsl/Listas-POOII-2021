@@ -88,6 +88,14 @@ public class XML implements Persistencia{
 			listaAlu.add(alu);
 		}
 		return listaAlu;
+	}
+
+
+
+	@Override
+	public boolean alterar(List<Aluno> lista) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 }
 	

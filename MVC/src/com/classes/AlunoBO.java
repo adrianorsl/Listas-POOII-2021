@@ -15,10 +15,14 @@ public class AlunoBO implements Persistencia{
 		}
 		return false;
 	}
-	    public static boolean alterar(Aluno aluno){
-	        AlunoDAO alunosDAO = new AlunoDAO();
-	        return alunosDAO.alterar(aluno);
+	@Override
+	public boolean alterar(List<Aluno> lista){
+		for (int i = 0; i < lista.size(); i++) {
+			AlunoDAO alunosDAO = new AlunoDAO();
+	        return alunosDAO.alterar(lista.get(i));
 	    }
+		return false;
+	}
 	    public static boolean excluir(Aluno aluno){
 	    	AlunoDAO alunosDAO = new AlunoDAO();
 	        return alunosDAO.excluir(aluno);
@@ -49,5 +53,5 @@ public class AlunoBO implements Persistencia{
 			}
 			return null;
 		}
-	    
+		
 }

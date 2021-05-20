@@ -42,7 +42,7 @@ public class AlunoDAO  {
     public boolean alterar(Aluno aluno) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE cpf = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ?  WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, aluno.getNome());
             ps.setString(2, aluno.getCpf());

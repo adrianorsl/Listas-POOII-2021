@@ -18,7 +18,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		final Tipos tipo = Tipos.BD;
 		Persistencia p = tipo.getPersistencia();
-		AlunoBO alunoBO = new AlunoBO();
 		ListAluno lista = new ListAluno();
 		
 		Aluno aluno = new Aluno("Adriano", 35201, "01010101011", "15/10/1988", "adrianorslsc@hotmail.com");
@@ -42,15 +41,20 @@ public class Main {
 		
 	    
 	    
-		aluno = new Aluno("Cristiano", 35255, "02030303030", "09/07/1986", "cristiano@homail.com");
+		aluno = new Aluno("Aristiano", 35255, "02030303030", "09/07/1985", "cristiano@homail.com");
+		lista.inserir(aluno);
+		p.alterar(lista.getLista());
 		
-		AlunoBO.alterar(aluno);
-		aluno = alunoBO.procurarPorCpf(aluno);
-		System.out.println(aluno);
 		
 
-		aluno = new Aluno("Adriano", 35201, "01010101011", "15/10/1988", "adrianorslsc@hotmail.com");
 		
+		List<Aluno> list2 = p.ler(lista.getLista());
+
+	    for (Iterator iter = list2.iterator(); iter.hasNext();) {
+			Aluno element = (Aluno) iter.next();
+			System.out.println(element.toString() + "\n---");	
+		}
+	
 		
 		
 		
