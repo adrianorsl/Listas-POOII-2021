@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final Tipos tipo = Tipos.XML;
+		final Tipos tipo = Tipos.CSV;
 		Persistencia p = tipo.getPersistencia();
 		AlunoBO alunoBO = new AlunoBO();
 		
