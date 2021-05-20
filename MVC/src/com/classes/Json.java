@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,23 +14,23 @@ import com.google.gson.reflect.TypeToken;
 
 public class Json implements Persistencia{
 
-	public void gravar(Aluno aluno) throws Exception {
+	public void gravar(List<Aluno> lista) throws Exception {
 
 		GsonBuilder builder = new GsonBuilder();
 	    Gson gson = builder.create();
 	    FileWriter writer = new FileWriter("arquivos/Alunos.json");
-	    writer.write(gson.toJson(aluno));
+	    writer.write(gson.toJson(lista));
 	    writer.close();
-	    System.out.println(gson.toJson(aluno));
+	    
 	}
 
 
-	@Override
-	public void ler(Aluno aluno) {
+
+	public List<Aluno> ler(List<Aluno> lista) {
 		FileReader reader = null;
 
 		try {
-			
+			List<Aluno> alunos = new ArrayList<>();
 			
 
 			File arquivo = new File("arquivos/Alunos.json");
@@ -42,10 +44,8 @@ public class Json implements Persistencia{
 				}
 
 				Gson gson = new Gson();
-				String nome = null, cpf = null, dataNascimento = null, email = null;
-				int matricula = 0;
-				Aluno a = new Aluno(nome, matricula, cpf, dataNascimento , email);
-				a = gson.fromJson(reader, new TypeToken<Aluno>() {
+				
+				alunos = gson.fromJson(reader, new TypeToken<List<Aluno>>() {
 				}.getType());
 			}
 
@@ -61,6 +61,7 @@ public class Json implements Persistencia{
 				reader = null;
 			}
 		}
+		return lista;
 		
 	}
 }

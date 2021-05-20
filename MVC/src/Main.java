@@ -16,7 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final Tipos tipo = Tipos.XML;
+		final Tipos tipo = Tipos.JSON;
 		Persistencia p = tipo.getPersistencia();
 		AlunoBO alunoBO = new AlunoBO();
 		ListAluno lista = new ListAluno();
@@ -39,6 +39,12 @@ public class Main {
 			}
 		}
 		
+		List<Aluno> list = p.ler(lista.getLista());
+
+	    for (Iterator iter = list.iterator(); iter.hasNext();) {
+			Aluno element = (Aluno) iter.next();
+			System.out.println(element.toString() + "\n---");	
+		}
 		
 		aluno = new Aluno("Cristiano", 35255, "02030303030", "09/07/1986", "cristiano@homail.com");
 		
@@ -54,14 +60,7 @@ public class Main {
 			System.out.println("Nao Encontrado");
 		
 		
-		List<Aluno> list = p.ler(lista.getLista());
-	    p.ler(lista.getLista());
-	    
-
-	    for (Iterator iter = list.iterator(); iter.hasNext();) {
-			Aluno element = (Aluno) iter.next();
-			System.out.println(element.toString() + "\n---");	
-		}
+		
 		
 		
 		

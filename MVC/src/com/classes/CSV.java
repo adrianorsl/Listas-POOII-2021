@@ -23,7 +23,7 @@ public class CSV implements Persistencia {
 		try {
 			writer = new FileWriter("arquivos/aluno.csv");
 
-			for (Aluno a : lista.size()) {
+			for (Aluno a : lista) {
 				String[] info = new String[5];
 
 				info[POS_MATRICULA] = Integer.toString(a.getMatricula());
