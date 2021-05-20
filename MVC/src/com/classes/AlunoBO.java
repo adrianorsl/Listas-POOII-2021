@@ -10,7 +10,7 @@ public class AlunoBO implements Persistencia{
 		for (int x = 0; x < lista.size(); x++) {
 			if (existe(lista.get(x)) != true) {
 				AlunoDAO alunosDAO = new AlunoDAO();
-				return alunosDAO.inserir(lista.get(x));
+				alunosDAO.inserir(lista.get(x));
 			}	
 		}
 		return false;
@@ -43,7 +43,10 @@ public class AlunoBO implements Persistencia{
 		
 		@Override
 		public List<Aluno> ler(List<Aluno> lista) throws Exception {
-			// TODO Auto-generated method stub
+			for (int x = 0; x < lista.size(); x++) {
+				AlunoDAO alunosDAO = new AlunoDAO();
+		        return alunosDAO.pesquisarTodos(lista.get(x));
+			}
 			return null;
 		}
 	    

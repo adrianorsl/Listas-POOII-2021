@@ -156,7 +156,7 @@ public class AlunoDAO  {
         List<Aluno> listObj = new ArrayList<Aluno>();
         try {
             while (rs.next()) {
-                Aluno obj = new Aluno(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Aluno obj = new Aluno(rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 listObj.add(obj);
             }
             return listObj;
